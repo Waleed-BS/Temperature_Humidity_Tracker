@@ -1,0 +1,140 @@
+{% extends "template.html" %}
+{% block content %}
+{% if session['logged_in'] %}
+
+
+
+<html>
+  <head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      input[] {
+        font-family: "PT Sans Narrow";
+        width: 180px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+
+      body
+       {
+          /*font-family: "PT Sans Narrow";*/
+      	/*font-size: 24px;*/
+      	/*font-style: normal;*/
+      	/*font-variant: normal;*/
+      	/*font-weight: 500;*/
+      	/*line-height: 26.4px;*/
+      }
+
+      input[]:focus {
+        width: 30%;
+      }
+
+      td {
+        font-size: 15px;
+        text-align: center;
+        border: 1px solid #dddddd;
+      }
+
+      table {
+
+
+        font-family: "PT Sans Narrow";
+        /*font-size: 24px;*/
+
+        border-collapse: collapse;
+        /*width: 100%;*/
+        table-layout:fixed;
+      }
+
+      th {
+
+        border: 1px solid #dddddd;
+        padding: 10px;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        text-align: center;
+        font-size: 18.5px;
+
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+    <body>
+	</br>
+	</br>
+	<form method = "POST" action="/display">
+
+	 <input id="logButton" class="btn btn-success" type="submit" name="submit" value="Read Current Data"/>
+	</form>
+
+
+	<h4 style="font-family:PT Sans Narrow;font-weight:500;"> Search </h4>
+
+      <form method = "POST" action="/display">
+
+        <div class = "fore-group" >
+          <input type="date"  name="date" placeholder='yyyy-mm-dd' />
+        </div>
+
+
+        </br>
+        <input id="displayButton" class="btn btn-primary" type="submit" name="submit" value="Display Data"/>
+
+
+        <input id="tempButton" class="btn btn-info" type="submit" name="submit" value="Graph Temperature Data"/>
+
+        <input id="humdButton" class="btn btn-info" type="submit" name="submit" value="Graph Humidity Data"/>
+        </br>
+
+      </br>
+
+
+
+          </form>
+
+      <h3></h3>
+      <h3></h3>
+      <table>
+        <tr>
+      <!-- <h5>Date/Time &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Temperature in C &emsp;&emsp;&emsp;&emsp;&emsp; Relative Humidity </h5> -->
+          <th>Date/Time</th>
+          <th>Temperature in C </th>
+          <th> Relative Humidity</th>
+        </tr>
+
+        <tr>
+          {% for item in climate %}
+          <td>{{item.rDatetime}}</td>
+          <td>{{item.tempC}}</td>
+          <td>{{item.hum}}%</td>
+        </tr>
+          {% endfor %}
+      </table>
+
+{% else %}
+
+<p>Not login!</p>
+
+
+{% endif %}
+{% endblock %}
+
+
+  </body>
+</html>

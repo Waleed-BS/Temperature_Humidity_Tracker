@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+
+{% block content %}
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+  <h4> Login </h4>
+  <form action='/log' method="POST">
+    <input type='text' name='username' placeholder='Username'></input>
+    </br>
+
+    <input type='password' name='password' placeholder='Password'></input>
+    </br>
+    <input class="btn btn-default" type='submit' name='submit' value = "     Login      " ></input>
+  </form>
+
+  <form action='/createuser' method="GET">
+    <input class = "btn btn-default" type='submit' name='submit' value= "     Sign Up    " ></input>
+  </form>
+
+<!-- allign the two buttons next to each other  -->
+<style>
+.h4 {
+  font-family: "PT Sans Narrow";
+}
+form  { display: inline; }
+</style>
+
+
+{% endif %}
+
+{% endblock %}

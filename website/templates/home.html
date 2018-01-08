@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% block content %}
+  <style>
+  .jumbo {
+    font-family: "PT Sans Narrow";
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+  }
+  </style>
+
+  {% if session['logged_in'] %}
+  <div class = "dfafa">
+      <br/>
+      <h2>You are logged in</h2>
+
+      <h4>  Click <a href= "/display" >Here</a> to Display Your Data</h4>
+  </div>
+  {% else %}
+  <div class = "jumbo">
+      <br/>
+      <h2>You Need to Login to Display Your Data</h2>
+      <h4> Click <a href= "/log" >here</a> to go to the login page</h4>
+  </div>
+  {% endif %}
+{% endblock %}
